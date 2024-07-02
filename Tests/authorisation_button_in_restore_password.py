@@ -17,11 +17,10 @@ driver.find_element(By.XPATH, ".//div/main/div/div/p[2]/a").click()
 time.sleep(3)
 
 #идем в форму входу для авторизации
-driver.find_element(By.XPATH, ".//div/main/div/div/p/a").click()
-driver.find_element(By.XPATH, ".//div/main/div/form/fieldset[1]/div/div/input").send_keys("OLgaSnegireva7@gmail.com")
-driver.find_element(By.XPATH, ".//div/main/div/form/fieldset[2]/div/div/input").send_keys("Privet12")
-driver.find_element(By.XPATH, ".//div/main/div/form/button").click()
-time.sleep(3)
+driver.find_element(By.XPATH, ".//button[text() = 'Войти в аккаунт']").click()
+driver.find_element(By.XPATH, ".//input[@name = 'name']").send_keys("OLgaSnegireva7@gmail.com")
+driver.find_element(By.XPATH, ".//input[@name = 'Пароль']").send_keys("Privet12")
+driver.find_element(By.XPATH, ".//button[text() = 'Войти']").click()time.sleep(3)
 
 #переход в личный кабинет
 # driver.find_element(By.XPATH, ".//div/header/nav/a").click()

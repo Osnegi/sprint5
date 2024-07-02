@@ -22,9 +22,11 @@ driver.find_element(By.XPATH, ".//button").click()
 time.sleep(2)
 
 #авторизация
-driver.find_element(By.XPATH, ".//div/main/div/form/fieldset[1]/div/div/input").send_keys(email)
-driver.find_element(By.XPATH, ".//div/main/div/form/fieldset[2]/div/div/input").send_keys("Privet12")
-driver.find_element(By.XPATH, ".//div/main/div/form/button").click()
+
+driver.find_element(By.XPATH, ".//input[@name = 'name']").send_keys("OLgaSnegireva7@gmail.com")
+driver.find_element(By.XPATH, ".//input[@name = 'Пароль']").send_keys("Privet12")
+driver.find_element(By.XPATH, ".//button[text() = 'Войти']").click()
+
 time.sleep(2)
 
 #переход в личный кабинет
