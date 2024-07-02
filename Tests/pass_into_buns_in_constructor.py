@@ -8,15 +8,18 @@ from selenium.webdriver.support.wait import WebDriverWait
 driver = webdriver.Chrome()
 driver.get("https://stellarburgers.nomoreparties.site/")
 
-#переход в соусы
-driver.find_element(By.XPATH, ".//span[text() = 'Соусы']").click()
-time.sleep(10)
+#переход в начинки
+driver.find_element(By.XPATH, ".//span[text() = 'Начинки']").click()
+
+WebDriverWait(driver, 3).until(expected_conditions.element_to_be_clickable((By.XPATH, ".//img[@alt = 'Филе Люминесцентного тетраодонтимформа']")))
 
 #переход в булки
 driver.find_element(By.XPATH, ".//span[text() = 'Булки']").click()
-time.sleep(10)
+
+WebDriverWait(driver, 3).until(expected_conditions.element_to_be_clickable((By.XPATH, ".//img[@alt = 'Флюоресцентная булка R2-D3']")))
+
 
 #проверка, что переход в раздел булки выполнен успешно
-assert (driver.find_element(By.XPATH, ".//div/main/section[1]/div[2]/h2[2]").get_attribute('innerHTML')) == 'Булки'
+assert (driver.find_element(By.XPATH, ".//h2").get_attribute('innerHTML')) == 'Булки'
 
 driver.quit()
