@@ -8,7 +8,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 driver = webdriver.Chrome()
 driver.get("https://stellarburgers.nomoreparties.site/")
 
-#переход в соусы
+#переход в начинки
 driver.find_element(By.XPATH, ".//div/main/section[1]/div[1]/div[3]/span").click()
 time.sleep(8)
 

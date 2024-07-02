@@ -16,7 +16,7 @@ time.sleep(10)
 driver.find_element(By.XPATH, ".//span[text() = 'Булки']").click()
 time.sleep(10)
 
-#проверка, что переход в раздел Соусы выполнен успешно
+#проверка, что переход в раздел булки выполнен успешно
 assert (driver.find_element(By.XPATH, ".//div/main/section[1]/div[2]/h2[2]").get_attribute('innerHTML')) == 'Булки'
 
 driver.quit()
