@@ -1,30 +1,27 @@
-import random
-import time
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
-driver = webdriver.Chrome()
-driver.get("https://stellarburgers.nomoreparties.site/")
 
-#авторизация
-driver.find_element(By.XPATH, ".//button[text() = 'Войти в аккаунт']").click()
-driver.find_element(By.XPATH, ".//input[@name = 'name']").send_keys("OLgaSnegireva7@gmail.com")
-driver.find_element(By.XPATH, ".//input[@name = 'Пароль']").send_keys("Privet12")
-driver.find_element(By.XPATH, ".//button[text() = 'Войти']").click()
+class TestStellarBurgersLogin:
+    def test_into_constructor(self, driver):
 
-WebDriverWait(driver, 3).until(expected_conditions.element_to_be_clickable((By.XPATH, ".//button[text() = 'Оформить заказ']")))
+        #авторизация
+        driver.find_element(By.XPATH, ".//button[text() = 'Войти в аккаунт']").click()
+        driver.find_element(By.XPATH, ".//input[@name = 'name']").send_keys("OLgaSnegireva7@gmail.com")
+        driver.find_element(By.XPATH, ".//input[@name = 'Пароль']").send_keys("Privet12")
+        driver.find_element(By.XPATH, ".//button[text() = 'Войти']").click()
 
-#переход в личный кабинет
-driver.find_element(By.XPATH, ".//div/header/nav/a").click()
+        WebDriverWait(driver, 3).until(expected_conditions.element_to_be_clickable((By.XPATH, ".//button[text() = 'Оформить заказ']")))
 
-WebDriverWait(driver, 3).until(expected_conditions.element_to_be_clickable((By.XPATH, ".//button[text() = 'Сохранить']")))
+        #переход в личный кабинет
+        driver.find_element(By.XPATH, ".//div/header/nav/a").click()
 
-#переход в конструктор
-driver.find_element(By.XPATH, ".//p[text() = 'Конструктор']").click()
+        WebDriverWait(driver, 3).until(expected_conditions.element_to_be_clickable((By.XPATH, ".//button[text() = 'Сохранить']")))
 
-#проверка, что переход в конструктор выполнен успешно
-assert (driver.find_element(By.XPATH, ".//div/main/section[1]/h1").get_attribute('innerHTML')) == 'Соберите бургер'
+        #переход в конструктор
+        driver.find_element(By.XPATH, ".//p[text() = 'Конструктор']").click()
 
-driver.quit()
+        #проверка, что переход в конструктор выполнен успешно
+        assert (driver.find_element(By.XPATH, ".//div/main/section[1]/h1").get_attribute('innerHTML')) == 'Соберите бургер'
+
