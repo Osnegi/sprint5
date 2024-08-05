@@ -1,58 +1,49 @@
-#Регистрация
-.//a[text() = 'Зарегистрироваться'] # ссылка 'Зарегистрироваться" на форму регистрации,
-.//fieldset[1]/div/div/input #Поле «Имя»
-.//fieldset[2]/div/div/input #Поле email
-.//fieldset[3]/div/div/input #Поле пароль
-.//button #кнопка 'Зарегистрироваться"
-.//p[text() = 'Некорректный пароль'] #ошибка для некорректного пароля
+from selenium.webdriver.common.by import By
 
-#Вход
-.//div/main/section[2]/div/button #вход через кнопку «Войти в аккаунт» на главной странице,
-.//button[text() = 'Войти в аккаунт'] #вход через кнопку «Войти в аккаунт» на главной странице,
+class Locators:
+    #Регистрация
+    REG_LINK = (By.XPATH, ".//a[text() = 'Зарегистрироваться']") # ссылка 'Зарегистрироваться" на форму регистрации,
+    REG_NAME = (By.XPATH, ".//label[text() = 'Имя']/parent::*/input") #Поле «Имя» (как вариант надежного локатора - //label[text() = 'Имя']/following-sibling::input)
+    REG_EMAIL = (By.XPATH,".//label[text() = 'Email']/parent::*/input") #Поле email
+    REG_PASSWORD = (By.XPATH, ".//input[@name = 'Пароль']") #Поле пароль
+    REG_BUTTON = (By.XPATH, ".//button[text() = 'Зарегистрироваться']") #кнопка 'Зарегистрироваться"
+    INCORRECT_PASSWORD = (By.XPATH, ".//p[text() = 'Некорректный пароль']") #ошибка для некорректного пароля
 
-.//div/header/nav/a/p #вход через кнопку «Личный кабинет» на главной странице,
+    #Вход
+    HEADER_ENTER = (By.XPATH, ".//h2[text() = 'Вход']")
+    ENTER_ACCOUNT_BUTTON = (By.XPATH, ".//button[text() = 'Войти в аккаунт']") #вход через кнопку «Войти в аккаунт» на главной странице,
+    ENTER_CABINET_BUTTON = (By.XPATH, ".//p[text() = 'Личный Кабинет']") #вход через кнопку «Личный кабинет» на главной странице,
+    ENTER_LINK_IN_REG = (By.XPATH, ".//a[text() = 'Войти']") #вход через ссылку «Войти" в форме регистрации,
+    RESTORE_PASSWORD_LINK = (By.XPATH, ".//a[text() = 'Восстановить пароль']") #ссылка 'Восстановить пароль' на форму восстановления пароля.
+    ENTER_LINK_IN_RESTORE_PASSWORD = (By.XPATH, ".//a[text() = 'Войти']") #вход через ссылку 'Войти' в форме восстановления пароля.
 
-.//div/main/div/div/p[1]/a # ссылка 'Зарегистрироваться" на форму регистрации,
-.//a[text() = 'Зарегистрироваться'] # ссылка 'Зарегистрироваться" на форму регистрации,
-.//div/main/div/div/p/a #вход через ссылку «Войти" в форме регистрации,
-.//a[text() = 'Войти'] #вход через ссылку «Войти" в форме регистрации,
+    INPUT_EMAIL = (By.XPATH, ".//input[@name = 'name']") #поля ввода email в форме входа в личный аккаунт
+    INPUT_PASSWORD = (By.XPATH, ".//input[@name = 'Пароль']") #поля ввода password в форме входа в личный аккаунт
+    ENTER_BUTTON = (By.XPATH, ".//button[text() = 'Войти']") # вход в личный кабинет (кнопка Войти)
 
+    MAKE_ORDER_BUTTON = (By.XPATH, ".//button[text() = 'Оформить заказ']")
+    SAVE_BUTTON = (By.XPATH, ".//button[text() = 'Сохранить']")
 
-.//div/main/div/div/p[2]/a #ссылка 'Восстановить пароль' на форму восстановления пароля.
-.//div/main/div/div/p/a #вход через ссылку 'Войти' в форме восстановления пароля.
+    #Переход в личный кабинет (проверено во всех тестах на вход)
+    PASS_INTO_ACCOUNT_BUTTON = (By.XPATH, ".//p[text() = 'Личный Кабинет']") #переход в личный кабинет
 
-.//fieldset//fieldset[1]/div/div/input #поля ввода email в форме входа в личный аккаунт
-.//input[@name = 'name'] #поля ввода email в форме входа в личный аккаунт
+    #Переход из личного кабинета в конструктор
+    CONSTRUCTOR_BUTTON = (By.XPATH, ".//p[text() = 'Конструктор']") #переход через кнопку «Конструктор»
+    LOGO = (By.XPATH, ".//div[@class='AppHeader_header__logo__2D0X2']") # через логотип Stellar Burgers
+    GET_BURGER_HEADER = (By.XPATH, ".//h1[text() = 'Соберите бургер']") #надпись - заголовок конструктора "Соберите бургер"
 
-.//fieldset//fieldset[2]/div/div/input #поля ввода пароля в форме входа в личный аккаунт
-.//input[@name = 'Пароль'] #поля ввода password в форме входа в личный аккаунт
+    #Выход из аккаунт
+    EXIT_BUTTON = (By.XPATH, ".//button[text() = 'Выход']") #кнопка «Выйти» в личном кабинете
 
-.//button[text() = 'Войти'] # вход в личный кабинет (кнопка Войти)
-.//div/main/div/form/button # вход в личный кабинет (кнопка Войти)
+    #Раздел «Конструктор»
+    BUNS_TO_SELECT = (By.XPATH, ".//span[text() = 'Булки']") #«Булки» заголовок
+    BUNS_HEADER_SELECTED = (By.XPATH, ".//span[text() = 'Булки']/parent::*[contains(@class,'current')]")  # «Булки» выбранный заголовок
+    BUNS_IMAGE = (By.XPATH, ".//img[@alt = 'Флюоресцентная булка R2-D3']") #картинка булки
 
-#Переход в личный кабинет (проверено во всех тестах на вход)
-.//p[text() = 'Личный Кабинет'] #переход в личный кабинет
-.//div/header/nav/a/p #переход в личный кабинет
-.//div/header/nav/a #переход в личный кабинет
+    SAUCES_TO_SELECT = (By.XPATH, ".//span[text() = 'Соусы']") #«Соусы» заголовок
+    SAUCES_IMAGE = (By.XPATH, ".//img[@alt = 'Соус с шипами Антарианского плоскоходца']") #картинка соуса
+    SAUCES_HEADER_SELECTED = (By.XPATH, ".//span[text() = 'Соусы']/parent::*[contains(@class,'current')]")  # «Соусы» выбранный заголовок
 
-#Переход из личного кабинета в конструктор
-
-.//div/header/nav/ul/li[1]/a/p #переход через кнопку «Конструктор»
-.//p[text() = 'Конструктор'] #переход через кнопку «Конструктор»
-.//div/header/nav/div/a # через логотип Stellar Burgers
-.//div/main/section[1]/h1 #надпись - заголовок конструктора "Соберите бургер"
-
-#Выход из аккаунт
-.//button[text() = 'Выход'] #кнопка «Выйти» в личном кабинете
-
-#Раздел «Конструктор»
-.//span[text() = 'Булки'] #«Булки»
-.//div/main/section[1]/div[2]/h2[2] #надпись - заголовок раздела Булки
-
-.//span[text() = 'Соусы'] #«Соусы»
-.//h2 #надпись - заголовок раздела Соусы
-
-.//span[text() = 'Начинки'] #«Начинки»
-.//div/main/section[1]/div[1]/div[3]/span #Начинки
-.//div/main/section[1]/div[2]/h2[3] #надпись - заголовок раздела Начинки
-
+    STUFFING_TO_SELECT = (By.XPATH, ".//span[text() = 'Начинки']") #«Начинки» заголовок
+    STUFFING_HEADER = (By.XPATH, ".//h2[text() = 'Начинки']")  #header начинки
+    STUFFING_HEADER_SELECTED = (By.XPATH, ".//span[text() = 'Начинки']/parent::*[contains(@class,'current')]")  # «Начинки» выбранный заголовок
